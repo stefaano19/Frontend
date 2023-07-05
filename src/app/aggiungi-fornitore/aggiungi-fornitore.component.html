@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span> Aggiungi Fornitore</span>
+        <span class="speacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+        <div fxFlex fxLayout="coloumn">
+            <div fxLayout="row wrap">
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Partita Iva</mat-label>
+                    <input matInput formControlName="partitaIva" required>
+                    <mat-error *ngIf="form.get('partitaIva')?.invalid || form.get('partitaIva')?.dirty || form.get('partitaIva')?.touched">Partita Iva Invalida</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Ragione Sociale</mat-label>
+                    <input matInput formControlName="ragioneSociale" required>
+                    <mat-error *ngIf="form.get('ragioneSociale')?.invalid || form.get('ragioneSociale')?.dirty || form.get('ragioneSociale')?.touched">Ragione Sociale Invalida</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Sede</mat-label>
+                    <input matInput formControlName="sede" required>
+                    <mat-error *ngIf="form.get('sede')?.invalid || form.get('sede')?.dirty || form.get('sede')?.touched">Sede Invalida</mat-error>  
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<div mat-dialog-action align="end">
+    <button mat-raised-button mat-dialog-close (click)="cancellaRegistrazione()">Cancella</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="aggiungiFornitore()"[disabled]="form.invalid">Aggiungi</button>
+</div>

@@ -1,0 +1,33 @@
+<mat-card>
+    <b><span>Appuntamenti</span></b>
+    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">
+        <mat-icon>add-circle</mat-icon>Aggiungi Appuntamento
+    </button>
+</mat-card>
+<hr>
+<mat-card>
+    <mat-form-field appearance="standard">
+    </mat-form-field>
+</mat-card>
+<hr>
+<div class="responsive_table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <th mat-cell *matHeaderCellDef="let element">{{element.nome}}</th>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matHeaderCellDef="let element" class="action-link">{{element.edit}}
+                <button mat-icon button color="primary" matTooltip="Edit" (click)="HandleEditAction(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColoumns;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row;columns:displayColoumns;"></tr>
+    </table>
+</div>

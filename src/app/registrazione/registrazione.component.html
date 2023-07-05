@@ -1,0 +1,66 @@
+<h2 mat-dialog-tile>Registrazione Utente</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content [formGroup]="signupForm" >
+    <mat-grid-list cols="2" >
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+            <div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Codice Fiscale</mat-label>
+                    <input matInput formControlName="cf" required>
+                    <mat-error *ngIf="signupForm.controls.cf.touched && signupForm.controls.cf.invalid">
+                        <span *ngIf="signupForm.controls.cf.errors.pattern">
+                            Non corretto
+                        </span>
+                        <span *ngIf="signupForm.controls.cf.errors.required">
+                            Campo obbligatorio
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
+                        <span *ngIf="signupForm.controls.email.errors.pattern">
+                            Non corretto
+                        </span>
+                        <span *ngIf="signupForm.controls.email.errors.required">
+                            Campo obbligatorio
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome" required>
+                    <mat-error *ngIf="signupForm.controls.nome.touched && signupForm.controls.nome.invalid">
+                        <span *ngIf="signupForm.controls.nome.errors.required">
+                            Campo obbligatorio
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" required>
+                    <mat-error *ngIf="signupForm.controls.password.touched && signupForm.controls.password.invalid">
+                        <span *ngIf="signupForm.controls.password.errors.required">
+                            Campo obbligatorio
+                        </span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>cancel</mat-icon>Cancella
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="handleSubmit()">
+        <mat-icon>save</mat-icon>Registrati
+    </button>
+  </div>
+
+
+
+
+

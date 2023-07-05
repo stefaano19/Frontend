@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span> Aggiungi Auto</span>
+        <span class="speacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+        <div fxFlex fxLayout="coloumn">
+            <div fxLayout="row wrap">
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Modello</mat-label>
+                    <input matInput formControlName="modello" required>
+                    <mat-error *ngIf="form.get('modello')?.invalid || form.get('modello')?.dirty || form.get('modello')?.touched">Modello invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Colore</mat-label>
+                    <input matInput formControlName="colore" required>
+                    <mat-error *ngIf="form.get('colore')?.invalid || form.get('colore')?.dirty || form.get('colore')?.touched">Colore Invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Prezzo</mat-label>
+                    <input matInput formControlName="prezzo" required>
+                    <mat-error *ngIf="form.get('prezzo')?.invalid || form.get('prezzo')?.dirty || form.get('prezzo')?.touched">Prezzo Invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Quantità</mat-label>
+                    <input matInput formControlName="quantita" required>
+                    <mat-error *ngIf="form.get('quantita')?.invalid || form.get('quantita')?.dirty || form.get('quantita')?.touched">Quantità Invalida</mat-error>  
+                </mat-form-field>
+                <br>
+                <h3>    Showroom   :        </h3>
+                <mat-radio-group aria-label="Showroom" color="primary" formControlName="showroom">
+                    <mat-radio-button value="true">Si </mat-radio-button>
+                    <mat-radio-button value="false">No  </mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field>
+                    <mat-label>Tipologia</mat-label>
+                    <mat-select formControlName="tipologiaAuto" multiple>
+                      <mat-select-trigger>
+                        {{tipologia_auto}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let tipologia of tipologiaAuto" [value]="tipologia">{{tipologia}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Casa Produttrice</mat-label>
+                    <mat-select formControlName="CP_ID" multiple>
+                      <mat-select-trigger>
+                        {{casaproduttrice}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let casa of caseProduttrici" [value]="casa.id">{{casa.ragioneSociale}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<div mat-dialog-action align="end">
+    <button mat-raised-button mat-dialog-close (click)="cancellaRegistrazione()">Cancella</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="aggiungiAuto()"[disabled]="form.invalid">Aggiungi</button>
+</div>
