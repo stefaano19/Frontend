@@ -16,6 +16,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ManageFornitoriComponent } from './dialog/manage-fornitori/manage-fornitori.component';
 import { ManageCaseProduttriciComponent } from './dialog/manage-case-produttrici/manage-case-produttrici.component';
 import { ManageAutoComponent } from './dialog/manage-auto/manage-auto.component';
+import { ManageProdottiComponent } from './dialog/manage-prodotti/manage-prodotti.component';
+import { ManageOrdiniAcquistoComponent } from './dialog/manage-ordini-acquisto/manage-ordini-acquisto.component';
+import { ManageOrdiniAcquistoPComponent } from './dialog/manage-ordini-acquisto-p/manage-ordini-acquisto-p.component'
 
 @NgModule({
   imports: [
@@ -38,7 +41,10 @@ import { ManageAutoComponent } from './dialog/manage-auto/manage-auto.component'
     AppuntamentiComponent,
     ManageFornitoriComponent,
     ManageCaseProduttriciComponent,
-    ManageAutoComponent
+    ManageAutoComponent,
+    ManageProdottiComponent,
+    ManageOrdiniAcquistoComponent,
+    ManageOrdiniAcquistoPComponent,
   ]
 })
 export class MaterialComponentsModule {}

@@ -1,0 +1,65 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span> Aggiungi Prodotto</span>
+        <span class="speacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+        <div fxFlex fxLayout="coloumn">
+            <div fxLayout="row wrap">
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Marca</mat-label>
+                    <input matInput formControlName="marca" required>
+                    <mat-error *ngIf="form.get('marca')?.invalid || form.get('marca')?.dirty || form.get('marca')?.touched">Marca invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome" required>
+                    <mat-error *ngIf="form.get('nome')?.invalid || form.get('nome')?.dirty || form.get('nome')?.touched">Nome Invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Prezzo</mat-label>
+                    <input matInput formControlName="prezzo" required>
+                    <mat-error *ngIf="form.get('prezzo')?.invalid || form.get('prezzo')?.dirty || form.get('prezzo')?.touched">Prezzo Invalido</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Disponibilità</mat-label>
+                    <input matInput formControlName="disponibilita" required>
+                    <mat-error *ngIf="form.get('disponibilita')?.invalid || form.get('disponibilita')?.dirty || form.get('disponibilita')?.touched">Disponibilita Invalida</mat-error>  
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Tipologia</mat-label>
+                    <mat-select formControlName="tipologia" multiple>
+                      <mat-select-trigger>
+                        {{tipologie}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let tipologia of tipologie" [value]="tipologia">{{tipologia}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Fornitore</mat-label>
+                    <mat-select formControlName="cp_F" multiple>
+                      <mat-select-trigger>
+                        {{fornitori}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let forn of fornitori" [value]="forn.id">{{forn.ragioneSociale}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<div mat-dialog-action align="end">
+    <button mat-raised-button mat-dialog-close (click)="cancellaRegistrazione()">Cancella</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="aggiungiProdotto()"[disabled]="form.invalid">Aggiungi</button>
+</div>

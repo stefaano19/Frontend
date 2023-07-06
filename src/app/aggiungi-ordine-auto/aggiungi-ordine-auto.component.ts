@@ -2,33 +2,32 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AggiungiAppuntamentoComponent } from '../aggiungi-appuntamento/aggiungi-appuntamento.component';
+import { Data } from '@angular/router';
 import { CasaProduttrice } from '../model/casaProduttrice';
 import { CaseProduttriciService } from '../services/case-produttrici.service';
-import { TipologiaAuto} from '../model/tipologiaAuto';
-import { Auto } from '../model/auto';
 import { AutoService } from '../service/auto.service';
+import { Auto } from '../model/auto';
+import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-aggiungi-auto',
-  templateUrl: './aggiungi-auto.component.html',
-  styleUrls: ['./aggiungi-auto.component.scss']
+  selector: 'app-aggiungi-ordine-auto',
+  templateUrl: './aggiungi-ordine-auto.component.html',
+  styleUrls: ['./aggiungi-ordine-auto.component.scss']
 })
-export class AggiungiAutoComponent implements OnInit {
+export class AggiungiOrdineAutoComponent implements OnInit {
+
   form !: FormGroup;
   title !:string;
-  id !: number;
-  colore !: string;
-  modello !: string;
-  prezzo !: number;
-  quantita !: number;
-  showroom !: boolean;
-  tipologia_auto !:object;
-  casaproduttrice !: object;
+  conforme !: boolean;
+  dataOrdine !: Data;
+  auto !:object;
+  autoR: Auto[]=[];
   caseProduttrici: CasaProduttrice[]=[];
-  tipologiaAuto: string[] = ['BERLINA','SUV','SPORTIVA']
+  casaproduttrice !: object;
 
   constructor(
     private casaProduttriceService:CaseProduttriciService,
+    private autoService:AutoService,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data:any,
     private dialogRef: MatDialogRef<AggiungiAppuntamentoComponent>
@@ -38,34 +37,35 @@ export class AggiungiAutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.form=this.fb.group({
-     id: ['', []],
-      colore: ['',[]],
-      prezzo:['',[Validators.required]],
-      modello: ['', [Validators.required]],
-      quantita:['',[Validators.required]],
-      showroom: ['', [Validators.required]],
-      tipologiaAuto: '',
-      CP_ID: '',
+      conforme: ['', []],
+      dataOrdine: ['',[]],
+      cp_C:['',[]],
+      auto:['',[]]
     }),
     this.casaProduttriceService.getCase().subscribe(
       (result:any) =>{
         console.log(result);
         this.caseProduttrici=result;
         console.log(this.caseProduttrici);
-      })
-
+      }),
+      this.autoService.getAuto().subscribe(
+        (result:any) =>{
+          console.log(result);
+          this.autoR=result;
+          console.log(this.autoR);
+        })
   }
 
   cancellaRegistrazione(){
     this.dialogRef.close();
   }
 
-
-  aggiungiAuto(){
+  aggiungiFornitore(){
     console.log(this.form.value);
-    this.form.value.CP_ID=this.form.value.CP_ID.join();
-    this.form.value.tipologiaAuto=this.form.value.tipologiaAuto.join();
+    this.form.value.cp_C=this.form.value.cp_C.join();
+    this.form.value.dataOrdine=formatDate(this.form.value.dataOrdine, 'YYYY-MM-ddThh:mm:ss','en-US');
     this.dialogRef.close(this.form.value);
   }
+
 }
 

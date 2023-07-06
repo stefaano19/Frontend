@@ -9,11 +9,12 @@ export interface Menu{
 
 const MENUITEMS = [
     {state:'dashboard', name:"Dashboard", type:"link", icon:'dashboard'},
-    {state:'appuntamenti', name:"Appuntamenti", type:"link", icon:'event'},
     {state:'fornitori', name:"Fornitori", type:"link", icon:'contact_phone'},
     {state:'caseProduttrici', name:"Case Produttrici", type:"link", icon:'factory'},
     {state:'auto', name:"Auto", type:"link", icon:'directions_car'},
-    {state:'ordini', name:"Ordini", type:"link", icon:'list_alt'},
+    {state:'prodotti', name:"Prodotti", type:"link", icon:'build'},
+    {state:'ordiniProdotti', name:"Ordini Prodotti", type:"link", icon:'list_alt'},
+    {state:'ordiniAuto', name:"Ordini Auto", type:"link", icon:'list_alt'},
     {state:'logout', name:"Logout", type:"link", icon:'logout'}
 ]
 @Injectable()

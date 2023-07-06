@@ -40,7 +40,10 @@
                 </mat-form-field>
                 <mat-form-field appearance="legacy">
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" required>
+                    <input matInput formControlName="password" required [type]="password ? 'password':'text'">
+                    <button type="button" mat-icon-button matSuffix (click)="password = !password" [attr.arial-label]="'Hide password'" [attr.aria-pressed]="password">
+                        <mat-icon>{{password ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
                     <mat-error *ngIf="signupForm.controls.password.touched && signupForm.controls.password.invalid">
                         <span *ngIf="signupForm.controls.password.errors.required">
                             Campo obbligatorio

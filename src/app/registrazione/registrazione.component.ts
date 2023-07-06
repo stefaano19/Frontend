@@ -58,15 +58,16 @@ export class RegistrazioneComponent implements OnInit {
     this.ngxService.stop();
      console.log(data)
     this.utenteService.registrazione(data).subscribe(response=>{
+      console.log(response);
       this.ngxService.stop();
       this.dialogRef.close();
       this.responseMessage = response;
       console.log(this.responseMessage);
-      this.snackbarService.openSnackBar(this.responseMessage.message,"");
+      this.snackbarService.openSnackBar(this.responseMessage.messag,"undo");
       this.router.navigate(['/']);
     }, (error)=>{
       if(error.error?.message){
-        this.responseMessage= error.error?.message;
+        this.responseMessage= error.error?.messag;
         this.snackbarService.openSnackBar("Qualcosa è andato storto", GlobalConstants.error);
       }
       else{

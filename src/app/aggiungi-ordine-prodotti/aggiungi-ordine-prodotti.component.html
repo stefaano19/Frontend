@@ -1,0 +1,61 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span> Aggiungi Ordine</span>
+        <span class="speacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+        <div fxFlex fxLayout="coloumn">
+            <div fxLayout="row wrap">
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dataOrdine">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="form.get('dataOrdine')?.invalid || form.get('dataOrdine')?.dirty || form.get('dataOrdine')?.touched">Data Invalida</mat-error>  
+                </mat-form-field>
+                <mat-label class="me-3">Conforme:</mat-label>
+                <br>
+                <mat-radio-group aria-label="Conforme" color="primary" formControlName="conforme">
+                    <br>
+                    <mat-radio-button value="true">Si 
+                    </mat-radio-button>
+                    <mat-divider></mat-divider>
+                    <span></span>
+                    <mat-radio-button value="false">No  
+                    </mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <mat-form-field>
+                    <mat-label>Fornitore</mat-label>
+                    <mat-select formControlName="cp_F" multiple>
+                      <mat-select-trigger>
+                        {{fornitore}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let forn of fornitori" [value]="forn.id">{{forn.ragioneSociale}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Prodotti</mat-label>
+                    <mat-select formControlName="prodotto" multiple>
+                      <mat-select-trigger>
+                        {{prodotto}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let p of prodotti" [value]="p">{{p.nome}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<div mat-dialog-action align="end">
+    <button mat-raised-button mat-dialog-close (click)="cancellaRegistrazione()">Cancella</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="aggiungiFornitore()"[disabled]="form.invalid">Aggiungi</button>
+</div>

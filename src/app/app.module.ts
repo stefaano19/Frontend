@@ -21,6 +21,9 @@ import { AggiungiAppuntamentoComponent } from './aggiungi-appuntamento/aggiungi-
 import { AggiungiFornitoreComponent } from './aggiungi-fornitore/aggiungi-fornitore.component';
 import { AggiungiCasaProduttriceComponent } from './aggiungi-casa-produttrice/aggiungi-casa-produttrice.component';
 import { AggiungiAutoComponent } from './aggiungi-auto/aggiungi-auto.component';
+import { AggiungiProdottoComponent } from './aggiungi-prodotto/aggiungi-prodotto.component';
+import { AggiungiOrdineProdottiComponent } from './aggiungi-ordine-prodotti/aggiungi-ordine-prodotti.component';
+import { AggiungiOrdineAutoComponent } from './aggiungi-ordine-auto/aggiungi-ordine-auto.component';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text:"Loading",
   textColor:"#FFFFFF",
@@ -46,6 +49,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AggiungiFornitoreComponent,
     AggiungiCasaProduttriceComponent,
     AggiungiAutoComponent,
+    AggiungiProdottoComponent,
+    AggiungiOrdineProdottiComponent,
+    AggiungiOrdineAutoComponent,
    ],
   imports: [
     BrowserModule,
